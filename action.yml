@@ -32,6 +32,9 @@ runs:
       auto: true
 
 
+  - uses: actions/setup-python
+
+
   - if: inputs.arch == 'x86' || inputs.arch == 'x64'
     uses: li1ht2ay-3es/gi1-ac2io3s@mingw-install
     with:
@@ -57,17 +60,6 @@ runs:
 
 
 
-  - if: inputs.arch == 'x86' || inputs.arch == 'x64'
-    working-directory: ${{ github.workspace }}
-    env:
-      CC: ccache ${{ env.MINGW_CC }}
-      CXX: ccache ${{ env.MINGW_CXX }}
-    shell: bash
-    run: |
-      make platform="win"
-
-
-
   - if: inputs.arch == 'so64'
     working-directory: ${{ github.workspace }}
     env:
@@ -75,13 +67,13 @@ runs:
       CXX: ccache g++
     shell: bash
     run: |
-      make platform="unix"
+      python -m build .
+      itch-dl --help
 
 
 
   - uses: actions/upload-artifact@main
     with:
-      name: program_${{ inputs.arch }}
+      name: itch_${{ inputs.arch }}
       path: |
-        ${{ github.workspace }}/**.dll
-        ${{ github.workspace }}/**.so
+        ${{ github.workspace }}/**.zip

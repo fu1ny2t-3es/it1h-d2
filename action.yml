@@ -33,7 +33,7 @@ runs:
 
 
   - uses: actions/setup-python@main
-  - uses: actions/actions-poetry@main
+  - uses: snok/install-poetry@main
 
 
   - if: inputs.arch == 'x86' || inputs.arch == 'x64'
@@ -68,7 +68,11 @@ runs:
       CXX: ccache g++
     shell: bash
     run: |
-      poetry itch-dl --help
+      poetry install --no-interaction --no-root
+      poetry install --no-interaction
+
+      export PYTHONPATH=$PWD
+      poetry run itch-dl --help
 
 
 

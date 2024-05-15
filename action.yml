@@ -33,6 +33,7 @@ runs:
 
 
   - uses: actions/setup-python@main
+  - uses: actions/actions-poetry@main
 
 
   - if: inputs.arch == 'x86' || inputs.arch == 'x64'
@@ -67,9 +68,7 @@ runs:
       CXX: ccache g++
     shell: bash
     run: |
-      python -m pip install -U setuptools wheel build
-      python -m build .
-      itch-dl --help
+      poetry itch-dl --help
 
 
 

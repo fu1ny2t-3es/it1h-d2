@@ -42,11 +42,6 @@ runs:
       arch: ${{ inputs.arch }}
 
 
-  - uses: li1ht2ay-3es/cc1ch2-ac3io4@custom
-    with:
-      key: ${{ inputs.arch }}
-
-
   - shell: bash
     run: |
       merge () {
@@ -60,19 +55,16 @@ runs:
       }
 
 
-
   - if: inputs.arch == 'so64'
     working-directory: ${{ github.workspace }}
-    env:
-      CC: ccache gcc
-      CXX: ccache g++
     shell: bash
     run: |
+      export PYTHONPATH=$PWD
       poetry install --no-interaction --no-root
       poetry install --no-interaction
 
-      export PYTHONPATH=$PWD
       poetry run itch-dl --help
+      poetry run itch-dl --api-key EAsrr4V85wsvOPk2bzHZjkacwBjVomFfM9At11zn --verbose https://ryancavendell.itch.io/picoquest-darkness-rising
 
 
 

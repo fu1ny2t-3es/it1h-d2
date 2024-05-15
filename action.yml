@@ -32,7 +32,7 @@ runs:
       auto: true
 
 
-  - uses: actions/setup-python
+  - uses: actions/setup-python@main
 
 
   - if: inputs.arch == 'x86' || inputs.arch == 'x64'

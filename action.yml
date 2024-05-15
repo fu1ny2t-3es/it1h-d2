@@ -64,7 +64,7 @@ runs:
       poetry install --no-interaction
 
       poetry run itch-dl --help
-      poetry run itch-dl --api-key EAsrr4V85wsvOPk2bzHZjkacwBjVomFfM9At11zn --verbose https://ryancavendell.itch.io/picoquest-darkness-rising
+      poetry run itch-dl --mirror-web --api-key EAsrr4V85wsvOPk2bzHZjkacwBjVomFfM9At11zn --verbose https://ryancavendell.itch.io/picoquest-darkness-rising
 
 
 
